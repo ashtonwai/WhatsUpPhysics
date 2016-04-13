@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DA52DE11CBEF0C300E0DFD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */; };
-		2DA52DE31CBEF0C300E0DFD3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE21CBEF0C300E0DFD3 /* GameScene.sks */; };
+		2DA52DE31CBEF0C300E0DFD3 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */; };
 		2DA52DE51CBEF0C300E0DFD3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */; };
 		2DA52DE71CBEF0C300E0DFD3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE61CBEF0C300E0DFD3 /* GameViewController.swift */; };
 		2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE81CBEF0C300E0DFD3 /* Main.storyboard */; };
@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		2DA52DDD1CBEF0C300E0DFD3 /* WhatsUpPhysics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsUpPhysics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2DA52DE21CBEF0C300E0DFD3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		2DA52DE61CBEF0C300E0DFD3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2DA52DE91CBEF0C300E0DFD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -39,6 +39,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D86461E1CBF061E002C8E1B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				2DA52DE61CBEF0C300E0DFD3 /* GameViewController.swift */,
+			);
+			name = VC;
+			sourceTree = "<group>";
+		};
+		2D86461F1CBF0632002C8E1B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */,
+				2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		2DA52DD41CBEF0C200E0DFD3 = {
 			isa = PBXGroup;
 			children = (
@@ -59,9 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */,
-				2DA52DE21CBEF0C300E0DFD3 /* GameScene.sks */,
-				2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */,
-				2DA52DE61CBEF0C300E0DFD3 /* GameViewController.swift */,
+				2D86461E1CBF061E002C8E1B /* VC */,
+				2D86461F1CBF0632002C8E1B /* Scenes */,
 				2DA52DE81CBEF0C300E0DFD3 /* Main.storyboard */,
 				2DA52DEB1CBEF0C300E0DFD3 /* Assets.xcassets */,
 				2DA52DED1CBEF0C300E0DFD3 /* LaunchScreen.storyboard */,
@@ -102,6 +118,7 @@
 				TargetAttributes = {
 					2DA52DDC1CBEF0C200E0DFD3 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = KT6L3A8T5R;
 					};
 				};
 			};
@@ -128,7 +145,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DA52DE31CBEF0C300E0DFD3 /* GameScene.sks in Resources */,
+				2DA52DE31CBEF0C300E0DFD3 /* Level1.sks in Resources */,
 				2DA52DEF1CBEF0C300E0DFD3 /* LaunchScreen.storyboard in Resources */,
 				2DA52DEC1CBEF0C300E0DFD3 /* Assets.xcassets in Resources */,
 				2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */,
@@ -259,10 +276,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WhatsUpPhysics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.IGME590.WhatsUpPhysics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -270,10 +289,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WhatsUpPhysics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.IGME590.WhatsUpPhysics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -296,6 +317,7 @@
 				2DA52DF51CBEF0C300E0DFD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
