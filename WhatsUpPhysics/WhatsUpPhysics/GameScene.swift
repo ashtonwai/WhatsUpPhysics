@@ -48,7 +48,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func setupWorld() {
         
         // Ball Shape
-        ball.name = "shape"
+        ball.name = "ball"
         ball.setScale(2.0)
         ball.position = CGPoint(x: playableRect.width * 0.50, y: playableRect.height * 0.50)
         ball.zPosition = SpriteLayer.Sprite
@@ -63,4 +63,69 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // Contact Delegates
         ball.physicsBody?.categoryBitMask = PhysicsCategory.Shape
     }
+    
+    // MARK: - SKPhysicsContactDelegate Methods -
+    func didBeginContact(contact: SKPhysicsContact) {
+        
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        if collision == PhysicsCategory.Shape | PhysicsCategory.Target {
+            print("A shape hit the target!")
+            
+            // which physicsBody belongs to a shape?
+            var shapeNode:SKNode?
+            if contact.bodyA.categoryBitMask == PhysicsCategory.Shape {
+                shapeNode = contact.bodyA.node
+            } else {
+                shapeNode = contact.bodyB.node
+            }
+            
+            // bail out if the shapeNode isn't in the scene anymore
+            guard shapeNode != nil else {
+                print("shapeNode is nil, so it's already been removed for some reason!")
+                return
+            }
+            
+            // cast the SKNode to an SKSpriteNode
+            // Use SKSpriteNode built-in dictionary property, "userData"
+            if let spriteNode = shapeNode as? SKSpriteNode {
+                
+                var isActive:Bool = false
+                
+                // does the userData dictionary exist, is there an "active" value?
+                if let userData = spriteNode.userData, activeValue = userData["active"] {
+                    // grab the value
+                    isActive = activeValue as! Bool
+                }
+                
+                if isActive {
+                    print("DO NOT runAction() on  \(spriteNode.name!)")
+                } else {
+                    // set "active" to true so we can only run the action once
+                    print("runAction() on  \(spriteNode.name!)")
+                    spriteNode.userData = NSMutableDictionary()
+                    spriteNode.userData = ["active":true]
+                    
+                    // trigger impulse on shapes except the square
+                    if spriteNode.name == "ball" {
+                        let bounceAction = SKAction.sequence([
+                            SKAction.playSoundFileNamed("pop.mp3", waitForCompletion: false),
+                            SKAction.runBlock({ print("bounce") }),
+                            SKAction.applyImpulse(CGVectorMake(-500, -500), duration: 0.1),
+                            SKAction.waitForDuration(0.5), // set active back to false after 1/2 a second so that the shapes can trigger the bounceAction more than once
+                            SKAction.runBlock({
+                                print("reset active on \(spriteNode.name)")
+                                spriteNode.userData = ["active":false]
+                            })
+                            ])
+                        
+                        spriteNode.runAction(bounceAction)
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    }
+
 }
