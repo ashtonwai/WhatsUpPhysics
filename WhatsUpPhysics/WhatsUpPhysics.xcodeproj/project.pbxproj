@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D8646261CBF1C58002C8E1B /* WhiteBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8646251CBF1C58002C8E1B /* WhiteBlockNode.swift */; };
 		2DA52DE11CBEF0C300E0DFD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */; };
 		2DA52DE31CBEF0C300E0DFD3 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */; };
 		2DA52DE51CBEF0C300E0DFD3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D8646251CBF1C58002C8E1B /* WhiteBlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhiteBlockNode.swift; sourceTree = "<group>"; };
 		2DA52DDD1CBEF0C300E0DFD3 /* WhatsUpPhysics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsUpPhysics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 			name = Scenes;
 			sourceTree = "<group>";
 		};
+		2D8646241CBF1BC7002C8E1B /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				2D8646251CBF1C58002C8E1B /* WhiteBlockNode.swift */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
 		2DA52DD41CBEF0C200E0DFD3 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +88,7 @@
 				2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */,
 				2D86461E1CBF061E002C8E1B /* VC */,
 				2D86461F1CBF0632002C8E1B /* Scenes */,
+				2D8646241CBF1BC7002C8E1B /* Nodes */,
 				2DA52DE81CBEF0C300E0DFD3 /* Main.storyboard */,
 				2DA52DEB1CBEF0C300E0DFD3 /* Assets.xcassets */,
 				2DA52DED1CBEF0C300E0DFD3 /* LaunchScreen.storyboard */,
@@ -160,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA52DE51CBEF0C300E0DFD3 /* GameScene.swift in Sources */,
+				2D8646261CBF1C58002C8E1B /* WhiteBlockNode.swift in Sources */,
 				2DA52DE71CBEF0C300E0DFD3 /* GameViewController.swift in Sources */,
 				2DA52DE11CBEF0C300E0DFD3 /* AppDelegate.swift in Sources */,
 			);

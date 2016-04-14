@@ -8,6 +8,13 @@
 
 import SpriteKit
 
+// MARK: - Structs -
+struct PhysicsCategory {
+    static let None:    UInt32 = 0
+    static let Ball:    UInt32 = 0b1 // 1
+    static let Block:   UInt32 = 0b10 // 2
+}
+
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
     var playableRect: CGRect = CGRectZero
     
@@ -24,8 +31,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     override func didMoveToView(view: SKView) {
         let maxAspectRatio: CGFloat = 4.0 / 3.0
         let maxAspectRatioHeight = size.width / maxAspectRatio
-        let playableMargin: CGFloat = (size.height - maxAspectRatioHeight)/2
+        let playableMargin: CGFloat = (size.height - maxAspectRatioHeight) / 2
         playableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: size.height-playableMargin*2)
+        
+        setupWorld()
     }
     
     // MARK: - Helpers -
