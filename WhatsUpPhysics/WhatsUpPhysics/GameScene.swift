@@ -8,8 +8,24 @@
 
 import SpriteKit
 
+struct SpriteLayer {
+    static let Background   : CGFloat = 0
+    static let PlayableRect : CGFloat = 1
+    static let HUD          : CGFloat = 2
+    static let Sprite       : CGFloat = 3
+    static let Message      : CGFloat = 4
+}
+
+struct PhysicsCategory {
+    static let None     : UInt32 = 0        // 0
+    static let Sand     : UInt32 = 0b1      // 1
+    static let Shape    : UInt32 = 0b10     // 2
+    static let Target   : UInt32 = 0b100    // 4
+}
+
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
     var playableRect: CGRect = CGRectZero
+    let ball = SKSpriteNode(imageNamed: "ball")
     
     // MARK: - Level Setting -
     var currentLevel: Int = 0
@@ -30,6 +46,21 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     // MARK: - Helpers -
     func setupWorld() {
+        
+        // Ball Shape
+        ball.name = "shape"
+        ball.setScale(2.0)
+        ball.position = CGPoint(x: playableRect.width * 0.50, y: playableRect.height * 0.50)
+        ball.zPosition = SpriteLayer.Sprite
+        
+        addChild(ball)
+        
+        // Physics
         physicsWorld.contactDelegate = self
+        physicsBody = SKPhysicsBody(edgeLoopFromRect: playableRect)
+        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width/2)
+        
+        // Contact Delegates
+        ball.physicsBody?.categoryBitMask = PhysicsCategory.Shape
     }
 }
