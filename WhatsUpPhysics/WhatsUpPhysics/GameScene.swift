@@ -40,7 +40,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     // MARK: - Helpers -
     func setupWorld() {
-        physicsWorld.contactDelegate = self
         
         // Ball Shape
         ball.name = "ball"
@@ -50,6 +49,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         addChild(ball)
         
         // Physics
+        physicsWorld.contactDelegate = self
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsBody = SKPhysicsBody(edgeLoopFromRect: playableRect)
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width/2)
         
