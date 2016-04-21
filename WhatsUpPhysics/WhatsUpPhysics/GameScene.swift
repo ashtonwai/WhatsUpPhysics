@@ -20,6 +20,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var playable: Bool = true
     var playableRect: CGRect = CGRectZero
     
+    var shootingPos: CGPoint = CGPointZero
+    var shootingAngle: CGFloat = 0
+    
     // MARK: - Level Setting -
     var currentLevel: Int = 0
     class func level(levelNum: Int) -> GameScene? {
@@ -35,6 +38,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         let maxAspectRatioHeight = size.width / maxAspectRatio
         let playableMargin: CGFloat = (size.height - maxAspectRatioHeight) / 2
         playableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: size.height-playableMargin*2)
+        
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GameScene.panDetected(_:)))
+        self.view!.addGestureRecognizer(gestureRecognizer)
         
         setupWorld()
     }
@@ -69,5 +75,45 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     func win() {
         
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for touch in touches {
+            shootingPos = touch.locationInNode(self)
+            
+            let ball = Ball(circleOfRadius: 30)
+            ball.position = shootingPos
+            ball.zPosition = 1
+            addChild(ball)
+        }
+    }
+    
+    func panDetected(recognizer: UIPanGestureRecognizer) {
+        if recognizer.state == .Changed {
+            var touchLocation = recognizer.locationInView(recognizer.view)
+            touchLocation = self.convertPointFromView(touchLocation)
+            
+            let dy = touchLocation.y - shootingPos.y
+            let dx = touchLocation.x - shootingPos.x
+            shootingAngle = atan2(dy, dx) //+ CGFloat(M_PI/2)
+            //print("Shooting Angle: \(shootingAngle)")
+        }
+        if recognizer.state == .Ended {
+            shootBall()
+            //print("Ended")
+        }
+    }
+    
+    func shootBall() {
+        let ball = Ball(circleOfRadius: 30)
+        ball.position = shootingPos
+        //ball.zPosition = 1
+        addChild(ball)
+        
+        let dx = cos(shootingAngle) * 20
+        let dy = sin(shootingAngle) * 20
+        let target = CGVectorMake(dx, dy)
+            
+        ball.shoot(target)
     }
 }
