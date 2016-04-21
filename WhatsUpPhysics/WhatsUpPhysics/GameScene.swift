@@ -11,13 +11,14 @@ import SpriteKit
 // MARK: - Structs -
 struct PhysicsCategory {
     static let None:    UInt32 = 0      // 0
-    static let Ball:    UInt32 = 0b1    // 1
-    static let Block:   UInt32 = 0b10   // 2
+    static let Block:   UInt32 = 0b1    // 1
+    static let Ball:    UInt32 = 0b10   // 2
 }
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
+    var gameManager: GameManager?
+    var playable: Bool = true
     var playableRect: CGRect = CGRectZero
-    let ball = SKSpriteNode(imageNamed: "ball")
     
     // MARK: - Level Setting -
     var currentLevel: Int = 0
@@ -38,49 +39,32 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         setupWorld()
     }
     
-    // MARK: - Helpers -
-    func setupWorld() {
-        
-        // Ball Shape
-        ball.name = "ball"
-        ball.setScale(2.0)
-        ball.position = CGPoint(x: playableRect.width * 0.50, y: playableRect.height * 0.50)
-        
-        addChild(ball)
-        
-        // Physics
-        physicsWorld.contactDelegate = self
-        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
-        physicsBody = SKPhysicsBody(edgeLoopFromRect: playableRect)
-        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width/2)
-        
-        // Contact Delegates
-        ball.physicsBody?.categoryBitMask = PhysicsCategory.Ball
-    }
-    
+    // MARK: - SKPhysicsContactDelegate -
     func didBeginContact(contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == PhysicsCategory.Block | PhysicsCategory.Ball {
-            let blockNode = (contact.bodyA.categoryBitMask == PhysicsCategory.Block) ? contact.bodyA.node : contact.bodyB.node
             
-            guard blockNode != nil else {
-                return
-            }
-            
-            if let block = blockNode as? WhiteBlockNode {
-                var isActive: Bool = true
-                
-                if let userData = block.userData, activeValue = userData["active"] {
-                    isActive = activeValue as! Bool
-                }
-                
-                if isActive {
-                    block.userData = NSMutableDictionary()
-                    block.userData = ["active": false]
-                    block.onHit()
-                }
-            }
         }
+    }
+    
+    // MARK: - Helpers -
+    func setupWorld() {
+        // Physics
+        physicsWorld.contactDelegate = self
+        physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+    }
+    
+    func newGame() {
+        view!.presentScene(GameScene.level(currentLevel))
+    }
+    
+    func lose() {
+        // restart level
+        performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 3)
+    }
+    
+    func win() {
+        
     }
 }

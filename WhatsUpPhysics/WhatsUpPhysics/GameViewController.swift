@@ -9,43 +9,61 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GameManager {
+    var skView: SKView!
+    let debugMode = true
+    let debugPhysics = false
+    let screenSize = CGSize(width: 2048, height: 1536)
+    let scaleMode = SKSceneScaleMode.AspectFill
+    var gameScene: GameScene?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let scene = GameScene.level(1) {
-            // Configure the view.
-            let skView = self.view as! SKView
+        self.becomeFirstResponder()
+        
+        // configure view
+        skView = self.view as! SKView
+        skView.ignoresSiblingOrder = true
+        loadHomeScene()
+    }
+    
+    // MARK: - Scene Navigation -
+    func loadHomeScene() {
+        let scene = HomeScene(size: screenSize, scaleMode: scaleMode, gameManager: self)
+        let reveal = SKTransition.crossFadeWithDuration(1.0)
+        skView.presentScene(scene, transition: reveal)
+    }
+    
+    func loadGameScene(level: Int) {
+        gameScene = GameScene(fileNamed: "Level\(level)")!
+        gameScene?.scaleMode = scaleMode
+        gameScene?.currentLevel = level
+        gameScene?.gameManager = self
+        
+        // debug
+        if debugMode {
             skView.showsFPS = true
             skView.showsNodeCount = true
-            //skView.showsPhysics = true
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = false
-            
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
-            skView.presentScene(scene)
         }
+        if debugPhysics {
+            skView.showsPhysics = true
+        }
+        
+        let reveal = SKTransition.crossFadeWithDuration(1.0)
+        skView.presentScene(gameScene!, transition: reveal)
     }
-
+    
+    // MARK: - View Lifecycle -
     override func shouldAutorotate() -> Bool {
         return true
     }
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return .AllButUpsideDown
-        } else {
-            return .All
-        }
+        return .Landscape
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
 
     override func prefersStatusBarHidden() -> Bool {
