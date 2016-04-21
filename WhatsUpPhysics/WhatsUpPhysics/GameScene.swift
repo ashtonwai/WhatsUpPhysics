@@ -47,13 +47,24 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     // MARK: - SKPhysicsContactDelegate -
     func didBeginContact(contact: SKPhysicsContact) {
-        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         if collision == PhysicsCategory.Block | PhysicsCategory.Ball {
-            let blockNode = (contact.bodyA.categoryBitMask == PhysicsCategory.Block) ? contact.bodyA.categoryBitMask : contact.bodyB.categoryBitMask
+            
+            // which physicsBody belongs to a shape?
+            let blockNode = contact.bodyA.categoryBitMask == PhysicsCategory.Block ? contact.bodyA.node : contact.bodyB.node
+            
+            // bail out if the shapeNode isn't in the scene anymore
+            guard blockNode != nil else {
+                print("blockNode is nil, so it's already been removed for some reason!")
+                return
+            }
+            
+            // cast the SKNode to an SKSpriteNode
             if let whiteBlock = blockNode as? WhiteBlockNode {
                 whiteBlock.onHit()
             }
+            
         }
     }
     
@@ -83,7 +94,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             
             let ball = Ball(circleOfRadius: 30)
             ball.position = shootingPos
-            ball.zPosition = 1
             addChild(ball)
         }
     }
@@ -95,23 +105,21 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             
             let dy = touchLocation.y - shootingPos.y
             let dx = touchLocation.x - shootingPos.x
-            shootingAngle = atan2(dy, dx) //+ CGFloat(M_PI/2)
-            //print("Shooting Angle: \(shootingAngle)")
+            shootingAngle = atan2(dy, dx)
         }
         if recognizer.state == .Ended {
             shootBall()
-            //print("Ended")
         }
     }
     
     func shootBall() {
         let ball = Ball(circleOfRadius: 30)
         ball.position = shootingPos
-        //ball.zPosition = 1
         addChild(ball)
         
-        let dx = cos(shootingAngle) * 20
-        let dy = sin(shootingAngle) * 20
+        let force: CGFloat = 20
+        let dx = cos(shootingAngle) * force
+        let dy = sin(shootingAngle) * force
         let target = CGVectorMake(dx, dy)
             
         ball.shoot(target)

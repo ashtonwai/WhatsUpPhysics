@@ -9,7 +9,6 @@
 import SpriteKit
 
 class Ball : SKShapeNode {
-    let bulletSpeed: Double = 1
     
     init(circleOfRadius: CGFloat) {
         super.init()
@@ -42,9 +41,5 @@ class Ball : SKShapeNode {
     
     func shoot(target: CGVector) {
         self.physicsBody?.applyImpulse(target)
-        
-        //let move = SKAction.moveBy(CGVector(dx: dx, dy: dy), duration: bulletSpeed)
-        //let delete = SKAction.removeFromParent()
-        //self.runAction(SKAction.sequence([move, delete]))
     }
 }
