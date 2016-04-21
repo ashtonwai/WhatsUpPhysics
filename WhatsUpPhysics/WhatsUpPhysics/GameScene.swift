@@ -11,8 +11,8 @@ import SpriteKit
 // MARK: - Structs -
 struct PhysicsCategory {
     static let None:    UInt32 = 0      // 0
-    static let Block:   UInt32 = 0b1    // 1
-    static let Ball:    UInt32 = 0b10   // 2
+    static let Ball:    UInt32 = 0b1    // 1
+    static let Block:   UInt32 = 0b10   // 2
 }
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
@@ -44,7 +44,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == PhysicsCategory.Block | PhysicsCategory.Ball {
-            
+            let blockNode = (contact.bodyA.categoryBitMask == PhysicsCategory.Block) ? contact.bodyA.categoryBitMask : contact.bodyB.categoryBitMask
+            if let whiteBlock = blockNode as? WhiteBlockNode {
+                whiteBlock.onHit()
+            }
         }
     }
     

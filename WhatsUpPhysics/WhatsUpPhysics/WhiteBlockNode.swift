@@ -10,10 +10,6 @@ import SpriteKit
 
 class WhiteBlockNode: SKSpriteNode {
     func onHit() {
-        runAction(SKAction.group([
-            SKAction.scaleTo(1.5, duration: 0.5),
-            SKAction.fadeOutWithDuration(0.5),
-            SKAction.removeFromParent()
-        ]))
+        runAction(SKAction.removeFromParent())
     }
 }
