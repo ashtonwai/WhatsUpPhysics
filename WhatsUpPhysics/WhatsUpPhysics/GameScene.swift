@@ -166,8 +166,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         self.enumerateChildNodesWithName("block") {
             node, stop in
             self.blockCount += 1
-            print("Number of blocks in Level \(self.currentLevel + 1): \(self.blockCount)")
         }
+        print("Number of blocks in Level \(self.currentLevel + 1): \(self.blockCount)")
     }
     
     func lose() {
