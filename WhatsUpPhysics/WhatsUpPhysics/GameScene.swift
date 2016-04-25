@@ -29,11 +29,16 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     let aimEndDot: SKShapeNode = Ball(circleOfRadius: 10)
     let aimLine: SKShapeNode = SKShapeNode()
     
+    var shooting = false
+    var newTouch = false
+    var blockCount = 0
+    
     // MARK: - Level Setting -
+    let levelCount: Int = 3
     var currentLevel: Int = 0
     class func level(levelNum: Int) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
-        scene.currentLevel = levelNum
+        scene.currentLevel = levelNum - 1
         scene.scaleMode = .AspectFill
         return scene
     }
@@ -75,6 +80,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             // cast the SKNode to an SKSpriteNode
             if let whiteBlock = blockNode as? WhiteBlockNode {
                 whiteBlock.onHit()
+                blockCount -= 1
             }
             
         }
@@ -93,8 +99,17 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             
             // cast the SKNode to an SKSpriteNode
             if let ball = ballNode as? Ball {
+                
+                shooting = false
                 ball.removeFromParent()
-                print("Ball destroyed")
+                //print("Ball destroyed")
+                
+                // check win state
+                if blockCount <= 0 {
+                    win()
+                } else {
+                    lose()
+                }
             }
             
         }
@@ -140,16 +155,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func newGame() {
-        view!.presentScene(GameScene.level(currentLevel))
+        view!.presentScene(GameScene.level(currentLevel + 1))
+        self.enumerateChildNodesWithName("block") {
+            node, stop in
+            self.blockCount += 1
+            print("Number of blocks in Level \(self.currentLevel + 1): \(self.blockCount)")
+        }
     }
     
     func lose() {
-        // restart level
-        performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 3)
+        // Restart level
+        performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
     
     func win() {
-        //
+        // Next level
+        // If final level, loop back to first
+        currentLevel = (currentLevel + 1) % levelCount
+        print("Current level: \(currentLevel + 1)")
+        performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -157,11 +181,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // On tap
         for touch in touches {
             
+            // Set new touch
+            newTouch = true
+            
             // Get shoot position
             shootingPos = touch.locationInNode(self)
-            
-            // Place start dot
-            aimStartDot.position = shootingPos
         }
     }
     
@@ -170,28 +194,40 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // On drag
         if recognizer.state == .Changed {
             
+            // Prevent preparing next shot during current shot
+            if shooting {
+                newTouch = false
+            }
+                
             // Get drag position
             let touchLocation = recognizer.locationInView(recognizer.view)
             dragPos = self.convertPointFromView(touchLocation)
             
-            // Draw aim line
-            drawAim()
+            if !shooting && newTouch {
+                // Draw aim line
+                drawAim()
+            }
         }
         
         // On release
         if recognizer.state == .Ended {
             
-            // Shoot ball
-            shootBall()
-            
-            // "Hide" shoot line
-            aimLine.path = CGPathCreateMutable()
-            aimStartDot.position = CGPoint(x: -100, y: -100) // Somewhere offscreen
-            aimEndDot.position = CGPoint(x: -100, y: -100)
+            if !shooting && newTouch {
+                // Shoot ball
+                shootBall()
+                
+                // "Hide" shoot line
+                aimLine.path = CGPathCreateMutable()
+                aimStartDot.position = CGPoint(x: -100, y: -100) // Somewhere offscreen beyond bounds
+                aimEndDot.position = CGPoint(x: -100, y: -100)
+            }
         }
     }
     
     func shootBall() {
+        
+        if shooting { return }
+        shooting = true
         
         // Create a new Ball
         let ball = Ball(circleOfRadius: 30)
@@ -218,6 +254,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         CGPathMoveToPoint(path, nil, shootingPos.x, shootingPos.y)
         CGPathAddLineToPoint(path, nil, dragPos.x, dragPos.y)
         aimLine.path = path
+        aimStartDot.position = shootingPos
         aimEndDot.position = dragPos
     }
 }

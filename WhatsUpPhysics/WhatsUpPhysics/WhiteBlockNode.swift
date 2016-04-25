@@ -9,6 +9,17 @@
 import SpriteKit
 
 class WhiteBlockNode: SKSpriteNode {
+    
+    override init(texture: SKTexture!, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
+        self.name = "block"
+    }
+ 
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+        self.name = "block"
+    }
+    
     func onHit() {
         runAction(SKAction.removeFromParent())
     }

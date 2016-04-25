@@ -37,7 +37,7 @@ class GameViewController: UIViewController, GameManager {
     func loadGameScene(level: Int) {
         gameScene = GameScene(fileNamed: "Level\(level)")!
         gameScene?.scaleMode = scaleMode
-        gameScene?.currentLevel = level
+        gameScene?.currentLevel = level - 1
         gameScene?.gameManager = self
         
         // debug
