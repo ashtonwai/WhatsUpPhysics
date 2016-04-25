@@ -13,6 +13,7 @@ struct PhysicsCategory {
     static let None:    UInt32 = 0      // 0
     static let Ball:    UInt32 = 0b1    // 1
     static let Block:   UInt32 = 0b10   // 2
+    static let Bounds:  UInt32 = 0b100  // 4
 }
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
@@ -22,6 +23,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     var shootingPos: CGPoint = CGPointZero
     var shootingAngle: CGFloat = 0
+    var dragPos: CGPoint = CGPointZero
+    
+    let aimStartDot: SKShapeNode = Ball(circleOfRadius: 10)
+    let aimEndDot: SKShapeNode = Ball(circleOfRadius: 10)
+    let aimLine: SKShapeNode = SKShapeNode()
     
     // MARK: - Level Setting -
     var currentLevel: Int = 0
@@ -34,14 +40,18 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     // MARK: - Initialization -
     override func didMoveToView(view: SKView) {
+        
+        // Calc visible screen space
         let maxAspectRatio: CGFloat = 4.0 / 3.0
         let maxAspectRatioHeight = size.width / maxAspectRatio
         let playableMargin: CGFloat = (size.height - maxAspectRatioHeight) / 2
         playableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: size.height-playableMargin*2)
         
+        // Set up listener for dragging
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(GameScene.panDetected(_:)))
         self.view!.addGestureRecognizer(gestureRecognizer)
         
+        // Set up game world
         setupWorld()
     }
     
@@ -49,6 +59,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func didBeginContact(contact: SKPhysicsContact) {
         
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        // Ball v Block
         if collision == PhysicsCategory.Block | PhysicsCategory.Ball {
             
             // which physicsBody belongs to a shape?
@@ -66,13 +78,65 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             }
             
         }
+        
+        // Ball v Bounds
+        if collision == PhysicsCategory.Bounds | PhysicsCategory.Ball {
+            
+            // which physicsBody belongs to a shape?
+            let ballNode = contact.bodyA.categoryBitMask == PhysicsCategory.Ball ? contact.bodyA.node : contact.bodyB.node
+            
+            // bail out if the shapeNode isn't in the scene anymore
+            guard ballNode != nil else {
+                print("ballNode is nil, so it's already been removed for some reason!")
+                return
+            }
+            
+            // cast the SKNode to an SKSpriteNode
+            if let ball = ballNode as? Ball {
+                ball.removeFromParent()
+                print("Ball destroyed")
+            }
+            
+        }
     }
     
     // MARK: - Helpers -
     func setupWorld() {
-        // Physics
+        
+        // Physics World
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        
+        // Create bounding box for Ball
+        
+        // Path
+        let boundingOffset: CGFloat = 50
+        let boundingRect = CGRect(
+            x: playableRect.minX - boundingOffset,
+            y: playableRect.minY - boundingOffset,
+            width: playableRect.width + boundingOffset*2,
+            height: playableRect.height + boundingOffset*2)
+        
+        // Shape
+        let boundingBox = SKShapeNode()
+        boundingBox.path = CGPathCreateWithRect(boundingRect, nil)
+        boundingBox.strokeColor = UIColor.whiteColor()
+        boundingBox.lineWidth = 5
+        
+        // Physics
+        boundingBox.physicsBody = SKPhysicsBody(edgeLoopFromRect: boundingRect)
+        boundingBox.physicsBody?.categoryBitMask = PhysicsCategory.Bounds
+        boundingBox.physicsBody?.contactTestBitMask = PhysicsCategory.Ball
+        boundingBox.physicsBody?.collisionBitMask = PhysicsCategory.Ball
+        addChild(boundingBox)
+        
+        
+        // Aiming nodes
+        aimLine.strokeColor = UIColor.redColor()
+        aimLine.lineWidth = 5
+        addChild(aimLine)
+        addChild(aimStartDot)
+        addChild(aimEndDot)
     }
     
     func newGame() {
@@ -85,43 +149,75 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func win() {
-        
+        //
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        // On tap
         for touch in touches {
+            
+            // Get shoot position
             shootingPos = touch.locationInNode(self)
             
-            let ball = Ball(circleOfRadius: 30)
-            ball.position = shootingPos
-            addChild(ball)
+            // Place start dot
+            aimStartDot.position = shootingPos
         }
     }
     
     func panDetected(recognizer: UIPanGestureRecognizer) {
+        
+        // On drag
         if recognizer.state == .Changed {
-            var touchLocation = recognizer.locationInView(recognizer.view)
-            touchLocation = self.convertPointFromView(touchLocation)
             
-            let dy = touchLocation.y - shootingPos.y
-            let dx = touchLocation.x - shootingPos.x
-            shootingAngle = atan2(dy, dx)
+            // Get drag position
+            let touchLocation = recognizer.locationInView(recognizer.view)
+            dragPos = self.convertPointFromView(touchLocation)
+            
+            // Draw aim line
+            drawAim()
         }
+        
+        // On release
         if recognizer.state == .Ended {
+            
+            // Shoot ball
             shootBall()
+            
+            // "Hide" shoot line
+            aimLine.path = CGPathCreateMutable()
+            aimStartDot.position = CGPoint(x: -100, y: -100) // Somewhere offscreen
+            aimEndDot.position = CGPoint(x: -100, y: -100)
         }
     }
     
     func shootBall() {
+        
+        // Create a new Ball
         let ball = Ball(circleOfRadius: 30)
         ball.position = shootingPos
         addChild(ball)
         
+        // Calc angle
+        var dy = dragPos.y - shootingPos.y
+        var dx = dragPos.x - shootingPos.x
+        shootingAngle = atan2(dy, dx)
+        
+        // Calc force
         let force: CGFloat = 20
-        let dx = cos(shootingAngle) * force
-        let dy = sin(shootingAngle) * force
+        dx = cos(shootingAngle) * force
+        dy = sin(shootingAngle) * force
         let target = CGVectorMake(dx, dy)
-            
+        
+        // Apply force
         ball.shoot(target)
+    }
+    
+    func drawAim() {
+        let path = CGPathCreateMutable()
+        CGPathMoveToPoint(path, nil, shootingPos.x, shootingPos.y)
+        CGPathAddLineToPoint(path, nil, dragPos.x, dragPos.y)
+        aimLine.path = path
+        aimEndDot.position = dragPos
     }
 }
