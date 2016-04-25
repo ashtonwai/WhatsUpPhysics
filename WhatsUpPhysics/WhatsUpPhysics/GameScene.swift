@@ -29,8 +29,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     let aimEndDot: SKShapeNode = Ball(circleOfRadius: 10)
     let aimLine: SKShapeNode = SKShapeNode()
     
-    var shooting = false
-    var newTouch = false
+    var shooting = false    // When the ball is moving
+    var newTouch = false    // When the player has lifted their finger and placed it down again
+    var loading = false     // When the game is performing a transition between scenes
     var blockCount = 0
     
     // MARK: - Level Setting -
@@ -101,6 +102,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             if let ball = ballNode as? Ball {
                 
                 shooting = false
+                loading = true
                 ball.removeFromParent()
                 //print("Ball destroyed")
                 
@@ -155,7 +157,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func newGame() {
+        
+        // Load scene
         view!.presentScene(GameScene.level(currentLevel + 1))
+        loading = false
+        
+        // Get block count
         self.enumerateChildNodesWithName("block") {
             node, stop in
             self.blockCount += 1
@@ -203,7 +210,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             let touchLocation = recognizer.locationInView(recognizer.view)
             dragPos = self.convertPointFromView(touchLocation)
             
-            if !shooting && newTouch {
+            if !shooting && newTouch && !loading {
                 // Draw aim line
                 drawAim()
             }
@@ -212,7 +219,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // On release
         if recognizer.state == .Ended {
             
-            if !shooting && newTouch {
+            if !shooting && newTouch && !loading {
                 // Shoot ball
                 shootBall()
                 
@@ -226,7 +233,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     func shootBall() {
         
-        if shooting { return }
         shooting = true
         
         // Create a new Ball
