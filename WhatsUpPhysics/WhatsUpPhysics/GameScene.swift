@@ -25,8 +25,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var shootingAngle: CGFloat = 0
     var dragPos: CGPoint = CGPointZero
     
-    let aimStartDot: SKShapeNode = SKShapeNode(circleOfRadius: 10)
-    let aimEndDot: SKShapeNode = SKShapeNode(circleOfRadius: 10)
+    let aimStartDot: SKShapeNode = SKShapeNode(circleOfRadius: 15)
+    let aimEndDot: SKShapeNode = SKShapeNode(circleOfRadius: 15)
     let aimLine: SKShapeNode = SKShapeNode()
     
     var shooting = false    // When the ball is moving
@@ -170,7 +170,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         
         // Aiming nodes
         aimLine.strokeColor = UIColor.redColor()
-        aimLine.lineWidth = 5
+        aimLine.lineWidth = 7
         addChild(aimLine)
         aimStartDot.fillColor = UIColor.redColor()
         addChild(aimStartDot)
