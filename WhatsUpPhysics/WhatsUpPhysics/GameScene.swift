@@ -35,7 +35,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var blockCount = 0
     
     // MARK: - Level Setting -
-    let levelCount: Int = 6
+    let levelCount: Int = 7
     var currentLevel: Int = 0
     class func level(levelNum: Int, gameManager: GameManager) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
@@ -99,7 +99,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                     SKAction.runBlock() {
                         emitter.removeFromParent()
                     }
-                    ]))
+                ]))
                 
             }
             else if let blackBlock = blockNode as? BlackBlockNode {

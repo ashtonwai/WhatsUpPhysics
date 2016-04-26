@@ -26,6 +26,7 @@
 		2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C03F1CC87AF4005B0529 /* Level1.sks */; };
 		2DD8C0421CC87C58005B0529 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C0411CC87C58005B0529 /* Level2.sks */; };
 		2DDB6E4B1CCF8186005A9AAC /* RedBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDB6E4A1CCF8186005A9AAC /* RedBlockNode.swift */; };
+		2DDB6E4D1CCF8377005A9AAC /* Level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DDB6E4C1CCF8377005A9AAC /* Level6.sks */; };
 		E11BA69A1CC9084700DA3F92 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11BA6991CC9084700DA3F92 /* Ball.swift */; };
 		E11EE8041CCF63C50063057D /* Fireball.sks in Resources */ = {isa = PBXBuildFile; fileRef = E11EE8031CCF63C50063057D /* Fireball.sks */; };
 		E1C1A7C11CCF6E72009AC881 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C01CCF6E72009AC881 /* Explosion.sks */; };
@@ -54,6 +55,7 @@
 		2DD8C03F1CC87AF4005B0529 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		2DD8C0411CC87C58005B0529 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		2DDB6E4A1CCF8186005A9AAC /* RedBlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedBlockNode.swift; sourceTree = "<group>"; };
+		2DDB6E4C1CCF8377005A9AAC /* Level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level6.sks; sourceTree = "<group>"; };
 		E11BA6991CC9084700DA3F92 /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		E11EE8031CCF63C50063057D /* Fireball.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fireball.sks; sourceTree = "<group>"; };
 		E1C1A7C01CCF6E72009AC881 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				2D8F8A501CCF5CE900807F79 /* Level3.sks */,
 				2D8F8A541CCF6B9000807F79 /* Level4.sks */,
 				2D38E7631CCF7C7100B8C420 /* Level5.sks */,
+				2DDB6E4C1CCF8377005A9AAC /* Level6.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1C1A7C31CCF6EDE009AC881 /* spark.png in Resources */,
+				2DDB6E4D1CCF8377005A9AAC /* Level6.sks in Resources */,
 				2DD8C0421CC87C58005B0529 /* Level2.sks in Resources */,
 				2DA52DE31CBEF0C300E0DFD3 /* Level0.sks in Resources */,
 				2DA52DEF1CBEF0C300E0DFD3 /* LaunchScreen.storyboard in Resources */,
