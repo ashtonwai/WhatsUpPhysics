@@ -82,6 +82,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             if let whiteBlock = blockNode as? WhiteBlockNode {
                 whiteBlock.onHit()
                 blockCount -= 1
+                print("Ball count: \(blockCount)")
             }
             
         }
@@ -104,7 +105,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 shooting = false
                 loading = true
                 ball.removeFromParent()
-                //print("Ball destroyed")
                 
                 // check win state
                 if blockCount <= 0 {
@@ -174,12 +174,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     func lose() {
         // Restart level
-        gameManager?.loadLevelScene(true, level: currentLevel)
+        print("Lose!")
+        gameManager?.loadLevelScene(false, level: currentLevel)
+        //performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
     
     func win() {
         // Next level
         // If final level, loop back to first
+        print("Win!")
         currentLevel = (currentLevel + 1) % levelCount
         gameManager?.loadLevelScene(true, level: currentLevel)
         //performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
