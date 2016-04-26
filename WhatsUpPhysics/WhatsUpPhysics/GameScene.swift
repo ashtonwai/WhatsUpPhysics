@@ -35,7 +35,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var blockCount = 0
     
     // MARK: - Level Setting -
-    let levelCount: Int = 3
+    let levelCount: Int = 4
     var currentLevel: Int = 0
     class func level(levelNum: Int, gameManager: GameManager) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
@@ -85,7 +85,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 blockCount -= 1
                 print("Ball count: \(blockCount)")
             }
-            
+            if let blackBlock = blockNode as? BlackBlockNode {
+                blackBlock.onHit()
+            }
         }
         
         // Ball v Bounds
