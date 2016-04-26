@@ -12,6 +12,7 @@
 		2D8F8A4F1CCF38D600807F79 /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F8A4E1CCF38D600807F79 /* LevelScene.swift */; };
 		2D8F8A511CCF5CE900807F79 /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D8F8A501CCF5CE900807F79 /* Level3.sks */; };
 		2D8F8A531CCF60D100807F79 /* BlackBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F8A521CCF60D100807F79 /* BlackBlockNode.swift */; };
+		2D8F8A551CCF6B9000807F79 /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2D8F8A541CCF6B9000807F79 /* Level4.sks */; };
 		2DA52DE11CBEF0C300E0DFD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */; };
 		2DA52DE31CBEF0C300E0DFD3 /* Level0.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE21CBEF0C300E0DFD3 /* Level0.sks */; };
 		2DA52DE51CBEF0C300E0DFD3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */; };
@@ -33,6 +34,7 @@
 		2D8F8A4E1CCF38D600807F79 /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		2D8F8A501CCF5CE900807F79 /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		2D8F8A521CCF60D100807F79 /* BlackBlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackBlockNode.swift; sourceTree = "<group>"; };
+		2D8F8A541CCF6B9000807F79 /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
 		2DA52DDD1CBEF0C300E0DFD3 /* WhatsUpPhysics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsUpPhysics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DA52DE21CBEF0C300E0DFD3 /* Level0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level0.sks; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				2DD8C03F1CC87AF4005B0529 /* Level1.sks */,
 				2DD8C0411CC87C58005B0529 /* Level2.sks */,
 				2D8F8A501CCF5CE900807F79 /* Level3.sks */,
+				2D8F8A541CCF6B9000807F79 /* Level4.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */,
 				2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */,
 				2D8F8A4C1CCF30DA00807F79 /* Spongeboy Me Bob.ttf in Resources */,
+				2D8F8A551CCF6B9000807F79 /* Level4.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
