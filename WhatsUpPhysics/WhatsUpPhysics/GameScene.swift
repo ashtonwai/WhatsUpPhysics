@@ -96,12 +96,21 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 
                 // Remove explosion
                 runAction(SKAction.sequence([
+                    SKAction.playSoundFileNamed("break block.mp3", waitForCompletion: false),
                     SKAction.waitForDuration(0.3),
                     SKAction.runBlock() {
                         emitter.removeFromParent()
                     }
                 ]))
                 
+                //If clear
+                if blockCount <= 0 {
+                    // Play level clear sound
+                    runAction(SKAction.sequence([
+                        SKAction.waitForDuration(0.2),
+                        SKAction.playSoundFileNamed("level complete.mp3", waitForCompletion: false),
+                        ]))
+                }
             }
             else if let blackBlock = blockNode as? BlackBlockNode {
                 blackBlock.onHit()
@@ -185,6 +194,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
         print("Current level: \(currentLevel)")
         print("Number of blocks in Level \(self.currentLevel): \(self.blockCount)")
+        
+        // Play level enter sound
+        runAction(SKAction.playSoundFileNamed("level start.mp3", waitForCompletion: false))
     }
     
     func lose() {
@@ -200,10 +212,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         loading = false
         currentLevel = (currentLevel + 1) % levelCount  // If final level, loop back to first
         
-        // save current level
+        // Save current level
         userDefaults.setValue(currentLevel, forKey: "lastLevel")
         userDefaults.synchronize()
         
+        // Load next level
         gameManager?.loadLevelScene(true, level: currentLevel)
     }
     

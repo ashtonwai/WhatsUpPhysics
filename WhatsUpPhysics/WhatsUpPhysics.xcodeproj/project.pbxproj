@@ -31,6 +31,9 @@
 		E11EE8041CCF63C50063057D /* Fireball.sks in Resources */ = {isa = PBXBuildFile; fileRef = E11EE8031CCF63C50063057D /* Fireball.sks */; };
 		E1C1A7C11CCF6E72009AC881 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C01CCF6E72009AC881 /* Explosion.sks */; };
 		E1C1A7C31CCF6EDE009AC881 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C21CCF6EDE009AC881 /* spark.png */; };
+		E1C1A7C81CCFA77A009AC881 /* break block.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C51CCFA77A009AC881 /* break block.mp3 */; };
+		E1C1A7C91CCFA77A009AC881 /* level complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C61CCFA77A009AC881 /* level complete.mp3 */; };
+		E1C1A7CA1CCFA77A009AC881 /* level start.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C71CCFA77A009AC881 /* level start.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		E11EE8031CCF63C50063057D /* Fireball.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fireball.sks; sourceTree = "<group>"; };
 		E1C1A7C01CCF6E72009AC881 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		E1C1A7C21CCF6EDE009AC881 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		E1C1A7C51CCFA77A009AC881 /* break block.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "break block.mp3"; sourceTree = "<group>"; };
+		E1C1A7C61CCFA77A009AC881 /* level complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "level complete.mp3"; sourceTree = "<group>"; };
+		E1C1A7C71CCFA77A009AC881 /* level start.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "level start.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,7 @@
 		2DA52DDF1CBEF0C300E0DFD3 /* WhatsUpPhysics */ = {
 			isa = PBXGroup;
 			children = (
+				E1C1A7C41CCFA769009AC881 /* Sounds */,
 				2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */,
 				2D86461E1CBF061E002C8E1B /* VC */,
 				2D86461F1CBF0632002C8E1B /* Scenes */,
@@ -157,6 +164,16 @@
 				2DD8C03A1CC83B04005B0529 /* GameManager.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		E1C1A7C41CCFA769009AC881 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E1C1A7C51CCFA77A009AC881 /* break block.mp3 */,
+				E1C1A7C61CCFA77A009AC881 /* level complete.mp3 */,
+				E1C1A7C71CCFA77A009AC881 /* level start.mp3 */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		E1C484641CCF634D0093A00A /* Emitters */ = {
@@ -228,7 +245,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C1A7CA1CCFA77A009AC881 /* level start.mp3 in Resources */,
 				E1C1A7C31CCF6EDE009AC881 /* spark.png in Resources */,
+				E1C1A7C91CCFA77A009AC881 /* level complete.mp3 in Resources */,
 				2DDB6E4D1CCF8377005A9AAC /* Level6.sks in Resources */,
 				2DD8C0421CC87C58005B0529 /* Level2.sks in Resources */,
 				2DA52DE31CBEF0C300E0DFD3 /* Level0.sks in Resources */,
@@ -236,6 +255,7 @@
 				2DA52DEC1CBEF0C300E0DFD3 /* Assets.xcassets in Resources */,
 				2D8F8A511CCF5CE900807F79 /* Level3.sks in Resources */,
 				E11EE8041CCF63C50063057D /* Fireball.sks in Resources */,
+				E1C1A7C81CCFA77A009AC881 /* break block.mp3 in Resources */,
 				2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */,
 				E1C1A7C11CCF6E72009AC881 /* Explosion.sks in Resources */,
 				2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */,
