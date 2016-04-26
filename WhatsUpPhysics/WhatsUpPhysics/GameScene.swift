@@ -46,6 +46,36 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         return scene
     }
     
+    // MARK: - Game Pausing - 
+    var gameLoopPaused:Bool = true {
+        didSet {
+            // If we were doing manual movement, we would need to zero these out
+            // lastUpdateTime = 0
+            // dt = 0
+            
+            print("gameLoopPaused=\(gameLoopPaused)")
+            gameLoopPaused ? runPauseAction() : runUnpauseAction()
+        }
+    }
+    
+    func runPauseAction() {
+        self.view?.paused = false // resumes physics
+        let unPauseAction = SKAction.sequence([
+            SKAction.fadeInWithDuration(1.5),
+            SKAction.runBlock({
+                self.physicsWorld.speed = 1.0 // resumes actions and update()
+            })
+        ])
+        unPauseAction.timingMode = .EaseIn
+        runAction(unPauseAction)
+    }
+    
+    func runUnpauseAction() {
+        scene?.alpha = 0.50
+        physicsWorld.speed = 0.0 // stops physics
+        self.view?.paused = true // stops actions and update()
+    }
+    
     // MARK: - Initialization -
     override func didMoveToView(view: SKView) {
         

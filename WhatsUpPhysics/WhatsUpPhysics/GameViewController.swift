@@ -65,6 +65,32 @@ class GameViewController: UIViewController, GameManager {
         skView.presentScene(levelScene, transition: reveal)
     }
     
+    // MARK: - Notifications -
+    func setupNotifications(){
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(GameViewController.willResignActive(_:)),
+            name: UIApplicationWillResignActiveNotification,
+            object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: #selector(GameViewController.didBecomeActive(_:)),
+            name: UIApplicationDidBecomeActiveNotification,
+            object: nil)
+    }
+    func willResignActive(n:NSNotification){
+        print("willResignActive notification")
+        gameScene?.gameLoopPaused = true
+    }
+    func didBecomeActive(n:NSNotification){
+        print("didBecomeActive notification")
+        gameScene?.gameLoopPaused = false
+    }
+    func teardownNotifications(){
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self)
+    }
+    
     // MARK: - View Lifecycle -
     override func shouldAutorotate() -> Bool {
         return true
