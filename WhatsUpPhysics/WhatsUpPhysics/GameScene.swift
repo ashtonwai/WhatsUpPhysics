@@ -37,9 +37,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     // MARK: - Level Setting -
     let levelCount: Int = 3
     var currentLevel: Int = 0
-    class func level(levelNum: Int) -> GameScene? {
+    class func level(levelNum: Int, gameManager: GameManager) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
         scene.currentLevel = levelNum
+        scene.gameManager = gameManager
         scene.scaleMode = .AspectFill
         return scene
     }
@@ -168,13 +169,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     
     func newGame() {
         // Load scene
-        view!.presentScene(GameScene.level(currentLevel))
+        view!.presentScene(GameScene.level(currentLevel, gameManager: gameManager!))
         loading = false
     }
     
     func lose() {
         // Restart level
-        gameManager?.loadLevelScene(true, level: currentLevel)
+        performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
+        //gameManager?.loadLevelScene(true, level: currentLevel)
     }
     
     func win() {
