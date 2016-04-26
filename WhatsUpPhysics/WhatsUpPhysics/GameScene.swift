@@ -154,6 +154,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         addChild(aimLine)
         addChild(aimStartDot)
         addChild(aimEndDot)
+        
+        // Get block count
+        self.enumerateChildNodesWithName("whiteBlock") {
+            node, stop in
+            self.blockCount += 1
+        }
+        print("Current level: \(currentLevel)")
+        print("Number of blocks in Level \(self.currentLevel): \(self.blockCount)")
     }
     
     func newGame() {
@@ -162,12 +170,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         view!.presentScene(GameScene.level(currentLevel))
         loading = false
         
-        // Get block count
-        self.enumerateChildNodesWithName("block") {
-            node, stop in
-            self.blockCount += 1
-        }
-        print("Number of blocks in Level \(self.currentLevel): \(self.blockCount)")
     }
     
     func lose() {
@@ -179,7 +181,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // Next level
         // If final level, loop back to first
         currentLevel = (currentLevel + 1) % levelCount
-        print("Current level: \(currentLevel)")
         performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
     
