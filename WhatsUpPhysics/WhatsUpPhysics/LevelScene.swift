@@ -58,28 +58,28 @@ class LevelScene: SKScene {
                     SKAction.moveToY(self.size.height+300, duration: moveTime)
                 ]),
                 SKAction.runBlock({
-                    self.gameManager.loadGameScene(self.currentLevel)
+                    self.gameManager.loadGameScene(true, level: self.currentLevel)
                 })
             ]))
-        }
-//        } else {
-//            nextLevel.position = CGPoint(x: self.size.width/2, y: self.size.height+300)
-//            addChild(nextLevel)
-//            
-//            nextLevel.runAction(SKAction.sequence([
-//                SKAction.group([
-//                    SKAction.fadeInWithDuration(fadeTime),
-//                    SKAction.moveToY(self.size.height/2-100, duration: moveTime)
-//                ]),
-//                SKAction.waitForDuration(waitTime),
-//                SKAction.group([
-//                    SKAction.fadeOutWithDuration(fadeTime),
-//                    SKAction.moveToY(-300, duration: moveTime)
-//                ]),
-//                SKAction.runBlock({
-//                    self.gameManager.loadGameScene(self.currentLevel)
-//                })
-//            ]))
-//        }
+
+        } /*else {
+            nextLevel.position = CGPoint(x: self.size.width/2, y: self.size.height+300)
+            addChild(nextLevel)
+            
+            nextLevel.runAction(SKAction.sequence([
+                SKAction.group([
+                    SKAction.fadeInWithDuration(fadeTime),
+                    SKAction.moveToY(self.size.height/2-100, duration: moveTime)
+                ]),
+                SKAction.waitForDuration(waitTime),
+                SKAction.group([
+                    SKAction.fadeOutWithDuration(fadeTime),
+                    SKAction.moveToY(-300, duration: moveTime)
+                ]),
+                SKAction.runBlock({
+                    self.gameManager.loadGameScene(true, level: self.currentLevel)
+                })
+            ]))
+        }*/
     }
 }
