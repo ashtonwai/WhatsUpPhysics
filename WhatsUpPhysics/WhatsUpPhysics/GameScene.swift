@@ -35,7 +35,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var blockCount = 0
     
     // MARK: - Level Setting -
-    let levelCount: Int = 2
+    let levelCount: Int = 3
     var currentLevel: Int = 0
     class func level(levelNum: Int) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
@@ -159,7 +159,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func newGame() {
         
         // Load scene
-        view!.presentScene(GameScene.level(currentLevel + 1))
+        view!.presentScene(GameScene.level(currentLevel))
         loading = false
         
         // Get block count
@@ -167,7 +167,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             node, stop in
             self.blockCount += 1
         }
-        print("Number of blocks in Level \(self.currentLevel + 1): \(self.blockCount)")
+        print("Number of blocks in Level \(self.currentLevel): \(self.blockCount)")
     }
     
     func lose() {
@@ -178,7 +178,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func win() {
         // Next level
         // If final level, loop back to first
-        currentLevel = currentLevel % levelCount
+        currentLevel = (currentLevel + 1) % levelCount
         print("Current level: \(currentLevel)")
         performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
