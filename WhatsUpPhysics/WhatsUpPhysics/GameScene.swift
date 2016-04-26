@@ -229,6 +229,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         runAction(SKAction.playSoundFileNamed("level start.mp3", waitForCompletion: false))
     }
     
+    // MARK: - Game States -
     func lose() {
         // Restart level
         print("Lose!")
@@ -250,6 +251,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         gameManager?.loadLevelScene(true, level: currentLevel)
     }
     
+    // MARK: - Touch & Gesture recognition -
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         // On tap
@@ -308,6 +310,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         }
     }
     
+    // MARK: - Draw new game objects -
     func shootBall() {
         
         shooting = true
