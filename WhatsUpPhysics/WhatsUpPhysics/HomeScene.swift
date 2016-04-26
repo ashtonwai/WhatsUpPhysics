@@ -15,7 +15,7 @@ class HomeScene: SKScene {
     // MARK: - Initialization -
     init(size: CGSize, scaleMode: SKSceneScaleMode, gameManager: GameManager) {
         self.gameManager = gameManager
-        self.start = SKLabelNode(fontNamed: "Noteworthy-Bold")
+        self.start = SKLabelNode(fontNamed: "Spongeboy Me Bob")
         super.init(size: size)
         self.scaleMode = scaleMode
     }
@@ -25,9 +25,17 @@ class HomeScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
-        let logo = SKLabelNode(fontNamed: "Noteworthy-Bold")
-        logo.text = "WhatsUpPhysics"
+        let background = SKSpriteNode(imageNamed: "home.jpg")
+        background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+        background.zPosition = 0
+        background.xScale = 1.8
+        background.yScale = 1.8
+        addChild(background)
+        
+        let logo = SKLabelNode(fontNamed: "Spongeboy Me Bob")
+        logo.text = "Whats Up Physics"
         logo.fontSize = 200
+        logo.fontColor = UIColor.blueColor()
         logo.position = CGPointMake(size.width/2, size.height/2 + 200)
         logo.zPosition = 1
         addChild(logo)
@@ -36,6 +44,7 @@ class HomeScene: SKScene {
         start.zPosition = 1
         start.text = "Start"
         start.fontSize = 70
+        start.fontColor = UIColor.blueColor()
         addChild(start)
     }
     

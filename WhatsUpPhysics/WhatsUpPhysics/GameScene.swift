@@ -197,6 +197,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func panDetected(recognizer: UIPanGestureRecognizer) {
+        // remove on boarding
         if currentLevel == 0 {
             if recognizer.state == .Began {
                 self.enumerateChildNodesWithName("demo") {
