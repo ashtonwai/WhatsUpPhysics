@@ -36,7 +36,7 @@ class LevelScene: SKScene {
         nextLevel.zPosition = 1
         nextLevel.fontSize = 300
         nextLevel.fontColor = UIColor.blueColor()
-        nextLevel.text = "\(currentLevel)"
+        nextLevel.text = "Level \(currentLevel)"
         nextLevel.alpha = 0
         
         let fadeTime = 0.5
@@ -61,24 +61,25 @@ class LevelScene: SKScene {
                     self.gameManager.loadGameScene(self.currentLevel)
                 })
             ]))
-        } else {
-            nextLevel.position = CGPoint(x: self.size.width/2, y: self.size.height+300)
-            addChild(nextLevel)
-            
-            nextLevel.runAction(SKAction.sequence([
-                SKAction.group([
-                    SKAction.fadeInWithDuration(fadeTime),
-                    SKAction.moveToY(self.size.height/2-100, duration: moveTime)
-                ]),
-                SKAction.waitForDuration(waitTime),
-                SKAction.group([
-                    SKAction.fadeOutWithDuration(fadeTime),
-                    SKAction.moveToY(-300, duration: moveTime)
-                ]),
-                SKAction.runBlock({
-                    self.gameManager.loadGameScene(self.currentLevel)
-                })
-            ]))
         }
+//        } else {
+//            nextLevel.position = CGPoint(x: self.size.width/2, y: self.size.height+300)
+//            addChild(nextLevel)
+//            
+//            nextLevel.runAction(SKAction.sequence([
+//                SKAction.group([
+//                    SKAction.fadeInWithDuration(fadeTime),
+//                    SKAction.moveToY(self.size.height/2-100, duration: moveTime)
+//                ]),
+//                SKAction.waitForDuration(waitTime),
+//                SKAction.group([
+//                    SKAction.fadeOutWithDuration(fadeTime),
+//                    SKAction.moveToY(-300, duration: moveTime)
+//                ]),
+//                SKAction.runBlock({
+//                    self.gameManager.loadGameScene(self.currentLevel)
+//                })
+//            ]))
+//        }
     }
 }
