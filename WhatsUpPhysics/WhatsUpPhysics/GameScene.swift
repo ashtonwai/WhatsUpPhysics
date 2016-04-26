@@ -167,25 +167,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         print("Number of blocks in Level \(self.currentLevel): \(self.blockCount)")
     }
     
-    func newGame() {
-        // Load scene
-        view!.presentScene(GameScene.level(currentLevel, gameManager: gameManager!))
-        loading = false
-    }
-    
     func lose() {
         // Restart level
         print("Lose!")
-        performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
+        loading = false
+        gameManager?.loadGameScene(false, level: currentLevel)
     }
     
     func win() {
         // Next level
-        // If final level, loop back to first
         print("Win!")
-        currentLevel = (currentLevel + 1) % levelCount
+        loading = false
+        currentLevel = (currentLevel + 1) % levelCount  // If final level, loop back to first
         gameManager?.loadLevelScene(true, level: currentLevel)
-        //performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

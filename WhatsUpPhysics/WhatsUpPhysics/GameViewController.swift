@@ -34,7 +34,7 @@ class GameViewController: UIViewController, GameManager {
         skView.presentScene(scene, transition: reveal)
     }
     
-    func loadGameScene(level: Int) {
+    func loadGameScene(transition: Bool, level: Int) {
         gameScene = GameScene(fileNamed: "Level\(level)")!
         gameScene?.scaleMode = scaleMode
         gameScene?.currentLevel = level
@@ -49,8 +49,12 @@ class GameViewController: UIViewController, GameManager {
             skView.showsPhysics = true
         }
         
-        let reveal = SKTransition.crossFadeWithDuration(1.0)
-        skView.presentScene(gameScene!, transition: reveal)
+        if transition {
+            let reveal = SKTransition.crossFadeWithDuration(1.0)
+            skView.presentScene(gameScene!, transition: reveal)
+        } else {
+            skView.presentScene(gameScene!)
+        }
     }
     
     func loadLevelScene(win: Bool, level: Int) {
