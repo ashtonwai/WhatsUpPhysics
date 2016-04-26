@@ -35,7 +35,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var blockCount = 0
     
     // MARK: - Level Setting -
-    let levelCount: Int = 3
+    let levelCount: Int = 2
     var currentLevel: Int = 0
     class func level(levelNum: Int) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
@@ -179,8 +179,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func win() {
         // Next level
         // If final level, loop back to first
-        currentLevel = (currentLevel + 1) % levelCount
-        performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
+        currentLevel = currentLevel % levelCount
+        gameManager?.loadLevelScene(true, level: currentLevel)
+        //performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

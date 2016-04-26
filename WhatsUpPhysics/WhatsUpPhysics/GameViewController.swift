@@ -53,6 +53,14 @@ class GameViewController: UIViewController, GameManager {
         skView.presentScene(gameScene!, transition: reveal)
     }
     
+    func loadLevelScene(win: Bool, level: Int) {
+        let levelScene = LevelScene(size: screenSize, scaleMode: scaleMode, gameManager: self)
+        levelScene.currentLevel = level
+        levelScene.win = win
+        let reveal = SKTransition.crossFadeWithDuration(1.0)
+        skView.presentScene(levelScene, transition: reveal)
+    }
+    
     // MARK: - View Lifecycle -
     override func shouldAutorotate() -> Bool {
         return true

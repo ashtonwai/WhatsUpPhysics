@@ -11,4 +11,5 @@ import Foundation
 protocol GameManager {
     func loadHomeScene()
     func loadGameScene(level: Int)
+    func loadLevelScene(win: Bool, level: Int)
 }
