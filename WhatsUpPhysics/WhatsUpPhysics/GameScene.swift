@@ -25,8 +25,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var shootingAngle: CGFloat = 0
     var dragPos: CGPoint = CGPointZero
     
-    let aimStartDot: SKShapeNode = Ball(circleOfRadius: 10)
-    let aimEndDot: SKShapeNode = Ball(circleOfRadius: 10)
+    let aimStartDot: SKShapeNode = SKShapeNode(circleOfRadius: 10)
+    let aimEndDot: SKShapeNode = SKShapeNode(circleOfRadius: 10)
     let aimLine: SKShapeNode = SKShapeNode()
     
     var shooting = false    // When the ball is moving
@@ -152,7 +152,9 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         aimLine.strokeColor = UIColor.redColor()
         aimLine.lineWidth = 5
         addChild(aimLine)
+        aimStartDot.fillColor = UIColor.redColor()
         addChild(aimStartDot)
+        aimEndDot.fillColor = UIColor.redColor()
         addChild(aimEndDot)
         
         // Get block count
@@ -168,7 +170,6 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // Load scene
         view!.presentScene(GameScene.level(currentLevel))
         loading = false
-        
     }
     
     func lose() {
@@ -198,7 +199,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func panDetected(recognizer: UIPanGestureRecognizer) {
-        // remove on boarding
+        
+        // Remove onboarding
         if currentLevel == 0 {
             if recognizer.state == .Began {
                 self.enumerateChildNodesWithName("demo") {
