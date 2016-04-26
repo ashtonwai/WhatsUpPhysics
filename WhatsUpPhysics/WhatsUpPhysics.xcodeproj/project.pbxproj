@@ -22,6 +22,7 @@
 		2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C03F1CC87AF4005B0529 /* Level1.sks */; };
 		2DD8C0421CC87C58005B0529 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C0411CC87C58005B0529 /* Level2.sks */; };
 		E11BA69A1CC9084700DA3F92 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11BA6991CC9084700DA3F92 /* Ball.swift */; };
+		E11EE8041CCF63C50063057D /* Fireball.sks in Resources */ = {isa = PBXBuildFile; fileRef = E11EE8031CCF63C50063057D /* Fireball.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		2DD8C03F1CC87AF4005B0529 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
 		2DD8C0411CC87C58005B0529 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		E11BA6991CC9084700DA3F92 /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		E11EE8031CCF63C50063057D /* Fireball.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fireball.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				2DD8C03C1CC83B44005B0529 /* Protocols */,
 				2D8646241CBF1BC7002C8E1B /* Nodes */,
 				2D8F8A4D1CCF30E800807F79 /* Fonts */,
+				E1C484641CCF634D0093A00A /* Emitters */,
 				2DA52DE81CBEF0C300E0DFD3 /* Main.storyboard */,
 				2DA52DEB1CBEF0C300E0DFD3 /* Assets.xcassets */,
 				2DA52DED1CBEF0C300E0DFD3 /* LaunchScreen.storyboard */,
@@ -132,6 +135,14 @@
 				2DD8C03A1CC83B04005B0529 /* GameManager.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		E1C484641CCF634D0093A00A /* Emitters */ = {
+			isa = PBXGroup;
+			children = (
+				E11EE8031CCF63C50063057D /* Fireball.sks */,
+			);
+			name = Emitters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +208,7 @@
 				2DA52DE31CBEF0C300E0DFD3 /* Level0.sks in Resources */,
 				2DA52DEF1CBEF0C300E0DFD3 /* LaunchScreen.storyboard in Resources */,
 				2DA52DEC1CBEF0C300E0DFD3 /* Assets.xcassets in Resources */,
+				E11EE8041CCF63C50063057D /* Fireball.sks in Resources */,
 				2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */,
 				2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */,
 				2D8F8A4C1CCF30DA00807F79 /* Spongeboy Me Bob.ttf in Resources */,
