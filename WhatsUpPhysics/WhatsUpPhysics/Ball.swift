@@ -33,6 +33,14 @@ class Ball : SKShapeNode {
         self.physicsBody?.restitution = 1
         self.physicsBody?.friction = 0
         self.physicsBody?.usesPreciseCollisionDetection = true
+        
+        /*
+        // Emitter
+        let emitter = SKEmitterNode(fileNamed: "Fireball")!
+        emitter.position = self.position
+        emitter.zPosition = self.zPosition + 1
+        addChild(emitter)
+        */
     }
 
     required init?(coder aDecoder: NSCoder) {

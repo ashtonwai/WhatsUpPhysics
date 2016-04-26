@@ -81,11 +81,28 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             
             // cast the SKNode to an SKSpriteNode
             if let whiteBlock = blockNode as? WhiteBlockNode {
+                
+                // Trigger explosion
+                let emitter = SKEmitterNode(fileNamed: "Explosion")!
+                emitter.position = whiteBlock.position
+                emitter.zPosition = 1
+                addChild(emitter)
+                
+                // Remove block
                 whiteBlock.onHit()
                 blockCount -= 1
-                print("Ball count: \(blockCount)")
+                print("Block count: \(blockCount)")
+                
+                // Remove explosion
+                runAction(SKAction.sequence([
+                    SKAction.waitForDuration(0.3),
+                    SKAction.runBlock() {
+                        emitter.removeFromParent()
+                    }
+                    ]))
+                
             }
-            if let blackBlock = blockNode as? BlackBlockNode {
+            else if let blackBlock = blockNode as? BlackBlockNode {
                 blackBlock.onHit()
             }
         }
@@ -130,7 +147,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // Create bounding box for Ball
         
         // Path
-        let boundingOffset: CGFloat = 50
+        let boundingOffset: CGFloat = 70
         let boundingRect = CGRect(
             x: playableRect.minX - boundingOffset,
             y: playableRect.minY - boundingOffset,
