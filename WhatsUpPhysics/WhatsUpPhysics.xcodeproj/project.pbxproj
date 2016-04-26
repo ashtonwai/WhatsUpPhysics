@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D8646261CBF1C58002C8E1B /* WhiteBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8646251CBF1C58002C8E1B /* WhiteBlockNode.swift */; };
 		2DA52DE11CBEF0C300E0DFD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */; };
-		2DA52DE31CBEF0C300E0DFD3 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */; };
+		2DA52DE31CBEF0C300E0DFD3 /* Level0.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE21CBEF0C300E0DFD3 /* Level0.sks */; };
 		2DA52DE51CBEF0C300E0DFD3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */; };
 		2DA52DE71CBEF0C300E0DFD3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA52DE61CBEF0C300E0DFD3 /* GameViewController.swift */; };
 		2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DE81CBEF0C300E0DFD3 /* Main.storyboard */; };
@@ -17,8 +17,8 @@
 		2DA52DEF1CBEF0C300E0DFD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DA52DED1CBEF0C300E0DFD3 /* LaunchScreen.storyboard */; };
 		2DD8C03B1CC83B04005B0529 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8C03A1CC83B04005B0529 /* GameManager.swift */; };
 		2DD8C03E1CC84F6B005B0529 /* HomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD8C03D1CC84F6B005B0529 /* HomeScene.swift */; };
-		2DD8C0401CC87AF4005B0529 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C03F1CC87AF4005B0529 /* Level2.sks */; };
-		2DD8C0421CC87C58005B0529 /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C0411CC87C58005B0529 /* Level3.sks */; };
+		2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C03F1CC87AF4005B0529 /* Level1.sks */; };
+		2DD8C0421CC87C58005B0529 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DD8C0411CC87C58005B0529 /* Level2.sks */; };
 		E11BA69A1CC9084700DA3F92 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11BA6991CC9084700DA3F92 /* Ball.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +26,7 @@
 		2D8646251CBF1C58002C8E1B /* WhiteBlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhiteBlockNode.swift; sourceTree = "<group>"; };
 		2DA52DDD1CBEF0C300E0DFD3 /* WhatsUpPhysics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsUpPhysics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DA52DE01CBEF0C300E0DFD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
+		2DA52DE21CBEF0C300E0DFD3 /* Level0.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level0.sks; sourceTree = "<group>"; };
 		2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		2DA52DE61CBEF0C300E0DFD3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2DA52DE91CBEF0C300E0DFD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -35,8 +35,8 @@
 		2DA52DF01CBEF0C300E0DFD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DD8C03A1CC83B04005B0529 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		2DD8C03D1CC84F6B005B0529 /* HomeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScene.swift; sourceTree = "<group>"; };
-		2DD8C03F1CC87AF4005B0529 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
-		2DD8C0411CC87C58005B0529 /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
+		2DD8C03F1CC87AF4005B0529 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
+		2DD8C0411CC87C58005B0529 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		E11BA6991CC9084700DA3F92 /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,9 +64,9 @@
 			children = (
 				2DD8C03D1CC84F6B005B0529 /* HomeScene.swift */,
 				2DA52DE41CBEF0C300E0DFD3 /* GameScene.swift */,
-				2DA52DE21CBEF0C300E0DFD3 /* Level1.sks */,
-				2DD8C03F1CC87AF4005B0529 /* Level2.sks */,
-				2DD8C0411CC87C58005B0529 /* Level3.sks */,
+				2DA52DE21CBEF0C300E0DFD3 /* Level0.sks */,
+				2DD8C03F1CC87AF4005B0529 /* Level1.sks */,
+				2DD8C0411CC87C58005B0529 /* Level2.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -179,12 +179,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DD8C0421CC87C58005B0529 /* Level3.sks in Resources */,
-				2DA52DE31CBEF0C300E0DFD3 /* Level1.sks in Resources */,
+				2DD8C0421CC87C58005B0529 /* Level2.sks in Resources */,
+				2DA52DE31CBEF0C300E0DFD3 /* Level0.sks in Resources */,
 				2DA52DEF1CBEF0C300E0DFD3 /* LaunchScreen.storyboard in Resources */,
 				2DA52DEC1CBEF0C300E0DFD3 /* Assets.xcassets in Resources */,
 				2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */,
-				2DD8C0401CC87AF4005B0529 /* Level2.sks in Resources */,
+				2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

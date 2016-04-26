@@ -43,7 +43,7 @@ class HomeScene: SKScene {
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch: AnyObject in touches {
             if nodeAtPoint(touch.locationInNode(self)) == start {
-                gameManager.loadGameScene(1)
+                gameManager.loadGameScene(0)
             }
         }
     }

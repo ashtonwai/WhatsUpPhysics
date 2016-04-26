@@ -35,11 +35,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var blockCount = 0
     
     // MARK: - Level Setting -
-    let levelCount: Int = 3
+    let levelCount: Int = 2
     var currentLevel: Int = 0
     class func level(levelNum: Int) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
-        scene.currentLevel = levelNum - 1
+        scene.currentLevel = levelNum
         scene.scaleMode = .AspectFill
         return scene
     }
@@ -178,8 +178,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     func win() {
         // Next level
         // If final level, loop back to first
-        currentLevel = (currentLevel + 1) % levelCount
-        print("Current level: \(currentLevel + 1)")
+        currentLevel = currentLevel % levelCount
+        print("Current level: \(currentLevel)")
         performSelector(#selector(GameScene.newGame), withObject: nil, afterDelay: 1)
     }
     
@@ -197,6 +197,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     }
     
     func panDetected(recognizer: UIPanGestureRecognizer) {
+        if currentLevel == 0 {
+            if recognizer.state == .Began {
+                self.enumerateChildNodesWithName("demo") {
+                    node, stop in
+                    node.removeFromParent()
+                }
+            }
+        }
         
         // On drag
         if recognizer.state == .Changed {
