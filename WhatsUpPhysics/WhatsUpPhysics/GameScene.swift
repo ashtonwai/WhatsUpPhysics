@@ -17,6 +17,7 @@ struct PhysicsCategory {
 }
 
 class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     var gameManager: GameManager?
     var playable: Bool = true
     var playableRect: CGRect = CGRectZero
@@ -198,6 +199,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         print("Win!")
         loading = false
         currentLevel = (currentLevel + 1) % levelCount  // If final level, loop back to first
+        
+        // save current level
+        userDefaults.setValue(currentLevel, forKey: "lastLevel")
+        userDefaults.synchronize()
+        
         gameManager?.loadLevelScene(true, level: currentLevel)
     }
     
