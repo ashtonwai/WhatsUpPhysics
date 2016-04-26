@@ -36,8 +36,12 @@ class LevelScene: SKScene {
         nextLevel.zPosition = 1
         nextLevel.fontSize = 300
         nextLevel.fontColor = UIColor.blueColor()
-        nextLevel.text = "\(currentLevel + 1)"
+        nextLevel.text = "\(currentLevel)"
         nextLevel.alpha = 0
+        
+        let fadeTime = 0.5
+        let moveTime = 0.5
+        let waitTime = 0.5
         
         if win {
             nextLevel.position = CGPoint(x: self.size.width/2, y: -300)
@@ -45,16 +49,16 @@ class LevelScene: SKScene {
             
             nextLevel.runAction(SKAction.sequence([
                 SKAction.group([
-                    SKAction.fadeInWithDuration(1.0),
-                    SKAction.moveToY(self.size.height/2-100, duration: 1.0)
+                    SKAction.fadeInWithDuration(fadeTime),
+                    SKAction.moveToY(self.size.height/2-100, duration: moveTime)
                 ]),
-                SKAction.waitForDuration(1.0),
+                SKAction.waitForDuration(waitTime),
                 SKAction.group([
-                    SKAction.fadeOutWithDuration(1.0),
-                    SKAction.moveToY(self.size.height+300, duration: 1.0)
+                    SKAction.fadeOutWithDuration(fadeTime),
+                    SKAction.moveToY(self.size.height+300, duration: moveTime)
                 ]),
                 SKAction.runBlock({
-                    self.gameManager.loadGameScene(self.currentLevel + 1)
+                    self.gameManager.loadGameScene(self.currentLevel)
                 })
             ]))
         } else {
@@ -63,16 +67,16 @@ class LevelScene: SKScene {
             
             nextLevel.runAction(SKAction.sequence([
                 SKAction.group([
-                    SKAction.fadeInWithDuration(1.0),
-                    SKAction.moveToY(self.size.height/2-100, duration: 1.0)
+                    SKAction.fadeInWithDuration(fadeTime),
+                    SKAction.moveToY(self.size.height/2-100, duration: moveTime)
                 ]),
-                SKAction.waitForDuration(1.0),
+                SKAction.waitForDuration(waitTime),
                 SKAction.group([
-                    SKAction.fadeOutWithDuration(1.0),
-                    SKAction.moveToY(-300, duration: 1.0)
+                    SKAction.fadeOutWithDuration(fadeTime),
+                    SKAction.moveToY(-300, duration: moveTime)
                 ]),
                 SKAction.runBlock({
-                    self.gameManager.loadGameScene(self.currentLevel - 1)
+                    self.gameManager.loadGameScene(self.currentLevel)
                 })
             ]))
         }
