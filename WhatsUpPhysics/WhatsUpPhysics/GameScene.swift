@@ -36,7 +36,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
     var blockCount = 0
     
     // MARK: - Level Setting -
-    let levelCount: Int = 7
+    let levelCount: Int = 8
     var currentLevel: Int = 0
     class func level(levelNum: Int, gameManager: GameManager) -> GameScene? {
         let scene = GameScene(fileNamed: "Level\(levelNum)")!
