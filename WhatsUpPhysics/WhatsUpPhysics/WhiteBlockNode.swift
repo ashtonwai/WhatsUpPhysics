@@ -9,9 +9,7 @@
 import SpriteKit
 
 class WhiteBlockNode: SKSpriteNode {
-    
-    func onHit() {
-        
+    func onHit(emitter: SKEmitterNode) {
         // Trigger explosion
         let emitter = SKEmitterNode(fileNamed: "Explosion")!
         emitter.position = self.position
@@ -28,7 +26,6 @@ class WhiteBlockNode: SKSpriteNode {
             SKAction.runBlock() {
                 emitter.removeFromParent()
             }
-            ]))
-        
+        ]))
     }
 }
