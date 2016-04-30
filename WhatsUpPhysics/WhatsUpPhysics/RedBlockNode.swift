@@ -16,11 +16,14 @@ class RedBlockNode: SKSpriteNode {
         let direction = ball.position - self.position
         let force = CGVectorMake(direction.x, direction.y).normalized() * 30
         
+        // Remove block
+        runAction(SKAction.sequence([
+            SKAction.playSoundFileNamed("red block explosion.mp3", waitForCompletion: false),
+            SKAction.removeFromParent()
+            ]))
+        
         // Apply force
         ball.shoot(force)
-        
-        // Remove block
-        runAction(SKAction.removeFromParent())
         
     }
 }
