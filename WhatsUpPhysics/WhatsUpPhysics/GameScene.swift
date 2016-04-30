@@ -301,8 +301,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 
                 // "Hide" shoot line
                 aimLine.path = CGPathCreateMutable()
-                aimStartDot.position = CGPoint(x: -100, y: -100) // Somewhere offscreen beyond bounds
-                aimEndDot.position = CGPoint(x: -100, y: -100)
+                aimStartDot.position = CGPoint(x: -500, y: -500) // Somewhere offscreen beyond bounds
+                aimEndDot.position = CGPoint(x: -500, y: -500)
             }
         }
     }
