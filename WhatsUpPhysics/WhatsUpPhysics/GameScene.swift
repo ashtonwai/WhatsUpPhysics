@@ -213,6 +213,8 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         addChild(aimStartDot)
         aimEndDot.fillColor = UIColor.redColor()
         addChild(aimEndDot)
+        aimStartDot.hidden = true
+        aimEndDot.hidden = true
         
         // Get block count
         self.enumerateChildNodesWithName("whiteBlock") {
@@ -299,10 +301,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
                 // Shoot ball
                 shootBall()
                 
-                // "Hide" shoot line
+                // Hide shoot line
                 aimLine.path = CGPathCreateMutable()
-                aimStartDot.position = CGPoint(x: -500, y: -500) // Somewhere offscreen beyond bounds
-                aimEndDot.position = CGPoint(x: -500, y: -500)
+                aimStartDot.hidden = true
+                aimEndDot.hidden = true
             }
         }
     }
@@ -340,5 +342,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         aimLine.path = path
         aimStartDot.position = shootingPos
         aimEndDot.position = dragPos
+        aimStartDot.hidden = false
+        aimEndDot.hidden = false
     }
 }
