@@ -321,6 +321,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         // Create a new Ball
         let ball = Ball(circleOfRadius: 30)
         ball.position = shootingPos
+        ball.zPosition = 1
         addChild(ball)
         
         // Calc angle
