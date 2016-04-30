@@ -23,7 +23,7 @@ class WhiteBlockNode: SKSpriteNode {
         
         // Play sound and then remove explosion
         runAction(SKAction.sequence([
-            SKAction.playSoundFileNamed("break block.mp3", waitForCompletion: false),
+            SKAction.playSoundFileNamed("break white block.mp3", waitForCompletion: false),
             SKAction.waitForDuration(0.3),
             SKAction.runBlock() {
                 emitter.removeFromParent()
