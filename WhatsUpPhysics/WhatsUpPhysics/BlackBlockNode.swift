@@ -9,10 +9,14 @@
 import SpriteKit
 
 class BlackBlockNode: SKSpriteNode {
+    
     func onHit() {
+        
+        // Enlarge and then shrink
         runAction(SKAction.sequence([
             SKAction.scaleBy(1.1, duration: 0.1),
             SKAction.scaleBy(0.9, duration: 0.1)
         ]))
+        
     }
 }

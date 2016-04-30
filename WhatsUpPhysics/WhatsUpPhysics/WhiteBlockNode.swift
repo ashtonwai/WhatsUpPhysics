@@ -11,6 +11,24 @@ import SpriteKit
 class WhiteBlockNode: SKSpriteNode {
     
     func onHit() {
+        
+        // Trigger explosion
+        let emitter = SKEmitterNode(fileNamed: "Explosion")!
+        emitter.position = self.position
+        emitter.zPosition = 1
+        addChild(emitter)
+        
+        // Remove block
         runAction(SKAction.removeFromParent())
+        
+        // Play sound and then remove explosion
+        runAction(SKAction.sequence([
+            SKAction.playSoundFileNamed("break block.mp3", waitForCompletion: false),
+            SKAction.waitForDuration(0.3),
+            SKAction.runBlock() {
+                emitter.removeFromParent()
+            }
+            ]))
+        
     }
 }

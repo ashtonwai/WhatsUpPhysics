@@ -102,7 +102,16 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
         if collision == PhysicsCategory.Block | PhysicsCategory.Ball {
             
             // which physicsBody belongs to a shape?
-            let blockNode = contact.bodyA.categoryBitMask == PhysicsCategory.Block ? contact.bodyA.node : contact.bodyB.node
+            var blockNode : SKNode?
+            var ballNode: SKNode?
+                
+            if contact.bodyA.categoryBitMask == PhysicsCategory.Block {
+                blockNode = contact.bodyA.node
+                ballNode = contact.bodyB.node
+            } else {
+                ballNode = contact.bodyA.node
+                blockNode = contact.bodyB.node
+            }
             
             // bail out if the shapeNode isn't in the scene anymore
             guard blockNode != nil else {
@@ -113,37 +122,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             // cast the SKNode to an SKSpriteNode
             if let whiteBlock = blockNode as? WhiteBlockNode {
                 
-                // Trigger explosion
-                let emitter = SKEmitterNode(fileNamed: "Explosion")!
-                emitter.position = whiteBlock.position
-                emitter.zPosition = 1
-                addChild(emitter)
-                
-                // Remove block
+                // Remove block, trigger explosion, play sound
                 whiteBlock.onHit()
                 blockCount -= 1
                 print("Block count: \(blockCount)")
-                
-                // Remove explosion
-                runAction(SKAction.sequence([
-                    SKAction.playSoundFileNamed("break block.mp3", waitForCompletion: false),
-                    SKAction.waitForDuration(0.3),
-                    SKAction.runBlock() {
-                        emitter.removeFromParent()
-                    }
-                ]))
                 
                 //If clear
                 if blockCount <= 0 {
                     // Play level clear sound
                     runAction(SKAction.sequence([
-                        SKAction.waitForDuration(0.2),
+                        SKAction.waitForDuration(0.1),
                         SKAction.playSoundFileNamed("level complete.mp3", waitForCompletion: false),
                         ]))
                 }
             }
-            else if let blackBlock = blockNode as? BlackBlockNode {
+            if let blackBlock = blockNode as? BlackBlockNode {
                 blackBlock.onHit()
+            }
+            if let redBlock = blockNode as? RedBlockNode, let ball = ballNode as? Ball {
+                redBlock.onHit(ball)
             }
         }
         

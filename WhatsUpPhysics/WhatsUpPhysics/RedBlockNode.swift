@@ -9,7 +9,18 @@
 import SpriteKit
 
 class RedBlockNode: SKSpriteNode {
-    func onHit() {
-        // Do something
+    
+    func onHit(ball: Ball) {
+        
+        // Calc explosive force
+        let direction = ball.position - self.position
+        let force = CGVectorMake(direction.x, direction.y).normalized() * 30
+        
+        // Apply force
+        ball.shoot(force)
+        
+        // Remove block
+        runAction(SKAction.removeFromParent())
+        
     }
 }
