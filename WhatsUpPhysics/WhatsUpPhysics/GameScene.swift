@@ -123,13 +123,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKPhysicsContactDelegate 
             if let whiteBlock = blockNode as? WhiteBlockNode {
                 
                 // Remove block, trigger explosion, play sound
-                // Trigger explosion
-                let emitter = SKEmitterNode(fileNamed: "Explosion")!
-                emitter.position = whiteBlock.position
-                emitter.zPosition = 1
-                addChild(emitter)
-                
-                whiteBlock.onHit(emitter)
+                whiteBlock.onHit(self)
                 blockCount -= 1
                 print("Block count: \(blockCount)")
                 

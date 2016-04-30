@@ -30,6 +30,8 @@
 		2DDB6E4D1CCF8377005A9AAC /* Level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2DDB6E4C1CCF8377005A9AAC /* Level6.sks */; };
 		E11BA69A1CC9084700DA3F92 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11BA6991CC9084700DA3F92 /* Ball.swift */; };
 		E11EE8041CCF63C50063057D /* Fireball.sks in Resources */ = {isa = PBXBuildFile; fileRef = E11EE8031CCF63C50063057D /* Fireball.sks */; };
+		E1A8BD441CD4721100CD1546 /* red block explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A8BD431CD4721100CD1546 /* red block explosion.mp3 */; };
+		E1A8BD461CD4743B00CD1546 /* black block.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1A8BD451CD4743B00CD1546 /* black block.mp3 */; };
 		E1C1A7C11CCF6E72009AC881 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C01CCF6E72009AC881 /* Explosion.sks */; };
 		E1C1A7C31CCF6EDE009AC881 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C21CCF6EDE009AC881 /* spark.png */; };
 		E1C1A7C81CCFA77A009AC881 /* break white block.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7C51CCFA77A009AC881 /* break white block.mp3 */; };
@@ -47,7 +49,6 @@
 		E1C1A7E11CD4281D009AC881 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C1A7D51CD4281D009AC881 /* SKTEffects.swift */; };
 		E1C1A7E21CD4281D009AC881 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C1A7D61CD4281D009AC881 /* SKTTimingFunctions.swift */; };
 		E1C1A7E31CD4281D009AC881 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C1A7D71CD4281D009AC881 /* Vector3.swift */; };
-		E1C1A7E51CD45268009AC881 /* black block.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1C1A7E41CD45268009AC881 /* black block.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,8 @@
 		2DDB6E4C1CCF8377005A9AAC /* Level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level6.sks; sourceTree = "<group>"; };
 		E11BA6991CC9084700DA3F92 /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		E11EE8031CCF63C50063057D /* Fireball.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fireball.sks; sourceTree = "<group>"; };
+		E1A8BD431CD4721100CD1546 /* red block explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "red block explosion.mp3"; sourceTree = "<group>"; };
+		E1A8BD451CD4743B00CD1546 /* black block.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "black block.mp3"; sourceTree = "<group>"; };
 		E1C1A7C01CCF6E72009AC881 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		E1C1A7C21CCF6EDE009AC881 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		E1C1A7C51CCFA77A009AC881 /* break white block.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "break white block.mp3"; sourceTree = "<group>"; };
@@ -93,7 +96,6 @@
 		E1C1A7D51CD4281D009AC881 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		E1C1A7D61CD4281D009AC881 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		E1C1A7D71CD4281D009AC881 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
-		E1C1A7E41CD45268009AC881 /* black block.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "black block.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +201,8 @@
 		E1C1A7C41CCFA769009AC881 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				E1C1A7E41CD45268009AC881 /* black block.mp3 */,
+				E1A8BD431CD4721100CD1546 /* red block explosion.mp3 */,
+				E1A8BD451CD4743B00CD1546 /* black block.mp3 */,
 				E1C1A7C51CCFA77A009AC881 /* break white block.mp3 */,
 				E1C1A7C61CCFA77A009AC881 /* level complete.mp3 */,
 				E1C1A7C71CCFA77A009AC881 /* level start.mp3 */,
@@ -296,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1C1A7CA1CCFA77A009AC881 /* level start.mp3 in Resources */,
-				E1C1A7E51CD45268009AC881 /* black block.mp3 in Resources */,
 				E1C1A7C31CCF6EDE009AC881 /* spark.png in Resources */,
 				E1C1A7C91CCFA77A009AC881 /* level complete.mp3 in Resources */,
 				2DDB6E4D1CCF8377005A9AAC /* Level6.sks in Resources */,
@@ -310,9 +312,11 @@
 				2DA52DEA1CBEF0C300E0DFD3 /* Main.storyboard in Resources */,
 				E1C1A7C11CCF6E72009AC881 /* Explosion.sks in Resources */,
 				2DD8C0401CC87AF4005B0529 /* Level1.sks in Resources */,
+				E1A8BD461CD4743B00CD1546 /* black block.mp3 in Resources */,
 				2D88D6741CD43F6900BA2B63 /* Level7.sks in Resources */,
 				2D8F8A4C1CCF30DA00807F79 /* Spongeboy Me Bob.ttf in Resources */,
 				2D8F8A551CCF6B9000807F79 /* Level4.sks in Resources */,
+				E1A8BD441CD4721100CD1546 /* red block explosion.mp3 in Resources */,
 				2D38E7641CCF7C7100B8C420 /* Level5.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
