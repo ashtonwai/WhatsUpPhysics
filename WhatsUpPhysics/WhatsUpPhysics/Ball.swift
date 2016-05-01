@@ -20,7 +20,8 @@ class Ball : SKShapeNode {
         self.name = "ball"
         
         self.path = CGPathCreateWithEllipseInRect(CGRect(origin: center, size: size), nil)
-        self.fillColor = SKColor.redColor()
+        self.fillColor = SKColor.whiteColor()
+        self.fillTexture = SKTexture.init(image: UIImage(named: "snowball")!)
         self.lineWidth = 0
         
         self.physicsBody = SKPhysicsBody(circleOfRadius: 10)
